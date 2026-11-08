@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dmytro Myronov · Backend Lead · Magento 2 & AI-driven development</title>
+  <meta name="description" content="Backend Lead with 12 years of PHP and 8+ years of Magento. ERP integrations (Kerridge, NetSuite, Salesforce), payments, performance, computer vision and MagePilot, an AI agent pipeline for Magento work.">
+  <meta property="og:title" content="Dmytro Myronov · Backend Lead · Magento 2 & AI">
+  <meta property="og:description" content="12 years of PHP, 8+ years of Magento, ERP integrations, computer vision and an AI agent pipeline for Magento tickets.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/magepilot/banner.webp">
+  <meta name="theme-color" content="#0b0a12">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23f26322'/><text x='32' y='44' font-family='Arial' font-weight='900' font-size='30' text-anchor='middle' fill='white'>DM</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav__logo"><span>DM</span></a>
+    <div class="nav__links">
+      <a href="#career">Career</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#magepilot">MagePilot</a>
+      <a href="#vision">Vision</a>
+      <a href="#logistics">Logistics</a>
+      <a href="#skills">Skills</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#game">Game</a>
+    </div>
+    <a href="#contact" class="btn btn--small">Hire me</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero__layer hero__layer--grid" data-speed="0.15"></div>
+    <div class="hero__layer hero__layer--glyphs" id="glyphs" data-speed="0.35"></div>
+    <div class="hero__orb hero__orb--a" data-speed="0.5"></div>
+    <div class="hero__orb hero__orb--b" data-speed="0.25"></div>
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow"><span class="dot"></span> Available for senior / lead roles</p>
+        <h1 class="hero__name" id="heroName"></h1>
+        <p class="hero__role" id="heroRole"></p>
+        <p class="hero__typed"><span class="mono">&gt; </span><span id="typed"></span><span class="caret">|</span></p>
+        <p class="hero__tagline" id="heroTagline"></p>
+        <div class="hero__cta">
+          <a href="#contact" class="btn">Let's talk</a>
+          <a href="#magepilot" class="btn btn--ghost">See MagePilot</a>
+          <a href="#game" class="btn btn--ghost">Play the game 🐘</a>
+        </div>
+      </div>
+      <div class="hero__photo" data-speed="-0.12">
+        <div class="hero__photo-frame"><img data-slot="portrait" alt="Dmytro Myronov"></div>
+        <div class="badge badge--a">PHP 8</div>
+        <div class="badge badge--b">Magento 2</div>
+        <div class="badge badge--c">AI agents</div>
+      </div>
+    </div>
+    <a href="#stats" class="scroll-hint"><span></span>scroll</a>
+  </header>
+
+  <!-- STATS -->
+  <section class="stats" id="stats">
+    <div class="container stats__grid" id="statsGrid"></div>
+    <div class="marquee"><div class="marquee__track" id="marquee"></div></div>
+  </section>
+
+  <!-- CAREER -->
+  <section class="career" id="career">
+    <div class="container section-head">
+      <p class="eyebrow">01 · Career</p>
+      <h2>From team lead at a web studio<br>to Backend Lead of a four-brand Magento platform</h2>
+    </div>
+    <div class="career__track" id="careerTrack"></div>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section class="integrations" id="integrations">
+    <div class="container split">
+      <div class="split__text">
+        <p class="eyebrow">02 · Integrations</p>
+        <h2>Magento in the middle.<br>Nothing gets lost.</h2>
+        <p>ERPs fail, APIs time out, webhooks arrive twice. I build integrations that survive it: delta syncs, queues, retries, idempotency keys and reconciliation reports.</p>
+        <ul class="checks">
+          <li><b>Kerridge</b> delta sync of products, tier prices and stock, full imports of 250,000 records</li>
+          <li><b>NetSuite</b> up to 2,000 orders and invoices per day</li>
+          <li><b>Salesforce, Mindbox</b> customers and orders over SOAP and REST</li>
+          <li><b>NMI gateway</b> written from scratch, Stripe and HeidelPay</li>
+        </ul>
+        <div class="ticker">
+          <div><span class="ticker__num mono" id="tickOrders">0</span><span>orders synced</span></div>
+          <div><span class="ticker__num mono" id="tickStock">0</span><span>stock updates</span></div>
+          <div><span class="ticker__num mono ok">0</span><span>lost messages</span></div>
+        </div>
+      </div>
+      <div class="split__visual">
+        <svg id="integrationSvg" viewBox="0 0 600 600" class="hub"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAGEPILOT -->
+  <section class="magepilot" id="magepilot">
+    <div class="container section-head">
+      <p class="eyebrow eyebrow--lime">03 · Own project</p>
+      <img src="assets/magepilot/banner.webp" alt="MagePilot: Magento tickets, agents, results" class="mp-banner">
+      <h2>Jira ticket in. Tested branch out.</h2>
+      <p class="lead">MagePilot is my multi-agent system on the Claude Agent SDK. It takes Magento tickets from Jira through investigation, design, code and browser QA inside local Docker stacks. Guardrails block force-pushes and secret reads; I review every branch myself. I use it daily and I am now rolling it out at Hoofdfabriek.</p>
+    </div>
+    <div class="container">
+      <div class="pipeline" id="pipeline"></div>
+      <div class="mp-facts">
+        <div><b>Python 3.12</b><span>asyncio daemon, SQLite, FastAPI kanban</span></div>
+        <div><b>Claude Agent SDK</b><span>investigator · architect · coder · QA</span></div>
+        <div><b>Playwright MCP</b><span>real browser QA with screenshots</span></div>
+        <div><b>Telegram bot</b><span>approvals and voice answers</span></div>
+        <div><b>100+ tests</b><span>pytest</span></div>
+      </div>
+      <div class="shots" id="shots"></div>
+      <div class="center"><a class="btn btn--lime" id="mpLink" target="_blank" rel="noopener">Visit MagePilot site ↗</a></div>
+    </div>
+  </section>
+
+  <!-- COMPUTER VISION -->
+  <section class="vision" id="vision">
+    <div class="container split split--reverse">
+      <div class="split__visual">
+        <div class="cv-frame">
+          <div class="cv-hud mono"><span class="rec">● REC</span> CAM-02 · parking lot · <span id="cvFps">30</span> fps</div>
+          <canvas id="cvCanvas" width="720" height="480"></canvas>
+          <div class="cv-stats mono"><span>free <b id="cvFree">0</b></span><span>occupied <b id="cvBusy">0</b></span><span>model <b>YOLO</b></span></div>
+        </div>
+      </div>
+      <div class="split__text">
+        <p class="eyebrow eyebrow--cyan">04 · Computer vision</p>
+        <h2>I teach cameras<br>to count cars.</h2>
+        <p><b>Easy Ride</b>: vehicle detection on parking-lot video. YOLO + OpenCV find every car, each parking spot is a region of interest, and the system shows free and occupied spaces in near real time.</p>
+        <ul class="checks">
+          <li>Detector fine-tuned on my own annotated frames: angles, night light, partial occlusion</li>
+          <li><b>Django</b> backend and web app around it: user flows, payments, currency-rate API</li>
+          <li>Also: a PyTorch super-resolution network for image upscaling (PSNR / SSIM)</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>OpenCV</span><span>YOLO</span><span>PyTorch</span><span>Django</span><span>DRF</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGISTICS -->
+  <section class="logistics" id="logistics">
+    <div class="container section-head">
+      <p class="eyebrow">05 · Logistics</p>
+      <h2>Trucks, shipments and CO₂<br>turned into clean data.</h2>
+      <p class="lead">A platform for logistics and manufacturing companies: operational data from ERPs and uploads goes through queues, the system calculates emissions per shipment and builds reports and cached dashboards.</p>
+    </div>
+    <div class="road" id="road">
+      <div class="road__sky" data-speed="0.1"></div>
+      <div class="road__hills road__hills--far"></div>
+      <div class="road__hills road__hills--near"></div>
+      <div class="road__lane"></div>
+      <div class="road__trucks" id="trucks"></div>
+    </div>
+    <div class="container">
+      <div class="ship-cards" id="shipCards"></div>
+      <div class="tags tags--center"><span>Laravel</span><span>PHP 8</span><span>Laravel Queues</span><span>Redis</span><span>MySQL</span><span>REST API</span><span>Docker</span></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="container section-head">
+      <p class="eyebrow">06 · Skills</p>
+      <h2>What I bring to the team</h2>
+    </div>
+    <div class="container skills__grid" id="skillsGrid"></div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container section-head">
+      <p class="eyebrow">07 · Gallery</p>
+      <h2>Conferences, teams, good times</h2>
+    </div>
+    <div class="container masonry" id="masonry"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact__box">
+      <p class="eyebrow">08 · Contact</p>
+      <h2>Need someone who owns the backend?</h2>
+      <p class="lead">Magento, integrations, Laravel, Python, AI automation. Senior or lead role, remote or Wrocław.</p>
+      <div class="contact__grid" id="contactGrid"></div>
+      <a class="btn" id="cvLink" download>Download CV (PDF)</a>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section class="game" id="game">
+    <div class="container section-head">
+      <p class="eyebrow eyebrow--violet">09 · Bonus level</p>
+      <h2>ElePHPant vs Bugs</h2>
+      <p class="lead">Production is on fire. Shoot HTTP requests at bugs before they hit the server. <span class="mono">← →</span> / <span class="mono">A D</span> to move, <span class="mono">Space</span> to shoot, <span class="mono">P</span> to pause. On mobile: drag and tap.</p>
+    </div>
+    <div class="container">
+      <div class="game__wrap">
+        <canvas id="gameCanvas" width="900" height="560"></canvas>
+        <div class="game__overlay" id="gameOverlay">
+          <h3 id="goTitle">Ready to deploy?</h3>
+          <p id="goText">Bugs fall from the sky. Every one that reaches the server costs uptime.</p>
+          <button class="btn btn--violet" id="gameStart">Start</button>
+        </div>
+      </div>
+      <div class="game__legend mono">
+        <span><i style="background:#ef4444"></i>500 · 2 hits</span>
+        <span><i style="background:#f59e0b"></i>404</span>
+        <span><i style="background:#a855f7"></i>N+1 · splits</span>
+        <span><i style="background:#64748b"></i>null</span>
+        <span><i style="background:#22c55e"></i>composer require · triple shot</span>
+        <span><i style="background:#38bdf8"></i>cache:flush · clears screen</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Dmytro Myronov · built by hand, no page builder · <a href="#top">back to top ↑</a></div>
+  </footer>
+
+  <div class="lightbox" id="lightbox"><img alt=""><p></p><button aria-label="Close">×</button></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

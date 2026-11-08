@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14121f"/><stop offset="1" stop-color="#231a3a"/></linearGradient>
+<pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".05"/></pattern></defs>
+<rect width="100%" height="100%" fill="url(#g)"/><rect width="100%" height="100%" fill="url(#p)"/>
+<rect x="24" y="24" width="1152" height="752" rx="28" fill="none" stroke="#f26322" stroke-opacity=".5" stroke-width="3" stroke-dasharray="14 12"/>
+<g transform="translate(600.0 340.0)" fill="none" stroke="#f26322" stroke-width="6" stroke-linejoin="round"><rect x="-70" y="-48" width="140" height="100" rx="16"/><circle r="26" cy="2"/><path d="M-30 -48l12-20h36l12 20"/></g>
+<text x="50%" y="470.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="700" fill="#fff">Magento conference</text>
+<text x="50%" y="520.0" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="28" fill="#fff" fill-opacity=".6">Photo #4</text>
+<text x="50%" y="740" text-anchor="middle" font-family="monospace" font-size="22" fill="#f26322" fill-opacity=".8">drop conference-4.jpg here</text></svg>
