@@ -39,6 +39,27 @@
   $('#heroName').innerHTML = `<span class="word"><span>${first}</span></span><br><span class="word"><span><em>${rest.join(' ')}</em></span></span>`;
   $('#heroRole').textContent = p.role;
   $('#heroTagline').textContent = p.tagline;
+
+  /* rotating "I build ..." line */
+  const rot = $('#rotator');
+  const words = p.builds.map((w, i) => { const s = el('span', i === 0 ? 'is-in' : null, w); rot.appendChild(s); return s; });
+  let wi = 0;
+  setInterval(() => {
+    if (document.hidden) return;
+    const cur = words[wi]; wi = (wi + 1) % words.length; const nxt = words[wi];
+    cur.classList.remove('is-in'); cur.classList.add('is-out');
+    nxt.classList.remove('is-out'); nxt.classList.add('is-in');
+    setTimeout(() => cur.classList.remove('is-out'), 600);
+  }, 2400);
+
+  /* pillars */
+  const pillarsEl = $('#pillars');
+  C.pillars.forEach(x => {
+    const a = el('a', 'pillar reveal', `<h3>${x.title}</h3><p>${x.text}</p><div class="pillar__chips">${x.chips.map(c => `<span>${c}</span>`).join('')}</div><span class="pillar__link mono">→ ${x.link}</span>`);
+    a.href = x.href;
+    a.style.setProperty('--c', x.color);
+    pillarsEl.appendChild(a);
+  });
   loadSlot($('[data-slot="portrait"]'), p.portrait);
 
   const phrases = [
@@ -468,7 +489,7 @@
   if (hasGsap && !reduced) {
     // hero intro
     gsap.from('.hero__name .word > span', { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: .12 });
-    gsap.from(['.hero .eyebrow', '.hero__role', '.hero__typed', '.hero__tagline', '.hero__cta'], { opacity: 0, y: 24, duration: .9, stagger: .1, delay: .4, ease: 'power3.out' });
+    gsap.from(['.hero .eyebrow', '.hero__role', '.hero__builds', '.hero__typed', '.hero__tagline', '.hero__cta'], { opacity: 0, y: 24, duration: .9, stagger: .1, delay: .4, ease: 'power3.out' });
     gsap.from('.hero__photo', { opacity: 0, scale: .9, rotate: -6, duration: 1.3, delay: .2, ease: 'power3.out' });
     // hero layers parallax
     document.querySelectorAll('.hero [data-speed]').forEach(n => {

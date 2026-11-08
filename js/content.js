@@ -6,8 +6,9 @@
 window.CONTENT = {
   person: {
     name: 'Dmytro Myronov',
-    role: 'Backend Lead · Magento 2 / Adobe Commerce',
-    tagline: 'I build the boring-critical parts of e-commerce: ERP integrations that never lose an order, fast catalogs, clean modules, and AI agents that do the routine work.',
+    role: 'Senior PHP Engineer · Backend Lead',
+    builds: ['Magento 2 stores', 'Laravel platforms', 'AI agent automation', 'Python / Django + computer vision'],
+    tagline: '12 years of PHP backend: e-commerce on Magento, platforms on Laravel, Python where it fits, and AI agents that take the routine work off the team.',
     location: 'Wrocław, Poland · Remote, any time zone',
     email: 'dmytro.mironov@gmail.com',
     phone: '+48 506 843 394',
@@ -16,6 +17,12 @@ window.CONTENT = {
     cv: 'assets/cv/Dmytro_Myronov_Magento2_AI.pdf',
     portrait: 'me-main',
   },
+
+  pillars: [
+    { title: 'Magento & e-commerce', text: '8+ years of Magento 1 / 2: ERP integrations, payments, Hyvä, upgrades and performance.', chips: ['Magento 2', 'Adobe Commerce', 'NetSuite', 'Hyvä'], href: '#career', link: 'Career', color: '#f26322' },
+    { title: 'PHP · Laravel · Python', text: 'APIs, queues and data pipelines on Laravel; Django back ends and computer vision in Python.', chips: ['PHP 8', 'Laravel', 'Django', 'OpenCV'], href: '#logistics', link: 'Laravel project', color: '#22d3ee' },
+    { title: 'AI automation', text: 'Multi-agent pipelines in daily work: Jira ticket in, tested branch out.', chips: ['Claude Agent SDK', 'MCP', 'Playwright', 'n8n'], href: '#magepilot', link: 'MagePilot', color: '#c6f432' },
+  ],
 
   stats: [
     { value: 12, suffix: '+', label: 'years of PHP' },
