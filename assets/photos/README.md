@@ -1,18 +1,13 @@
 # Photos
 
-Each photo slot on the page loads `<slot>.jpg` (then `.jpeg`, `.png`, `.webp`) and falls back to the
-`<slot>.svg` placeholder. To add a photo, drop a file with the slot name next to the placeholder,
-for example `conference-1.jpg`. Keep photos around 1600 px wide and under 400 KB.
+Photos are WebP files named after their slot, for example `seoboost-team.webp`. Slots and captions
+are listed in `js/content.js` (`person.portrait`, `career[].feature`, `career[].photos`,
+`community.events`). A slot whose file is missing is hidden on the page.
 
-| Slot | Where it shows | What to put there |
-|------|----------------|-------------------|
-| portrait | Hero (top) | Your portrait, vertical 4:5 |
-| seoboost-1, seoboost-2 | Career: SEOBOOST | Team / office, a project screenshot |
-| ssa-1 | Career: SSA Group | Team photo |
-| conference-1 … conference-4 | Career: SSA Group | Magento conference photos |
-| overdose-1, overdose-2 | Career: InTechSoft × Overdose | Team / store screenshots |
-| startupsoft-1 | Career: StartupSoft | Screenshot |
-| hoofdfabriek-1 … hoofdfabriek-3 | Career: Hoofdfabriek | Corporate party photos |
+Originals live in `../../images/` (git-ignored, they contain EXIF data). To add a photo:
 
-All slots also appear in the Gallery section. To add or rename slots, edit `photos` arrays in
-`js/content.js`.
+1. Resize to at most 1600 px wide and save as WebP without metadata, about 80 % quality.
+2. Put it here as `<slot>.webp`.
+3. Add `{ slot: '<slot>', cap: 'Caption' }` to the right `photos` array in `js/content.js`.
+
+`seoboost-card.webp` has the phone number, e-mail and QR code blurred on purpose.

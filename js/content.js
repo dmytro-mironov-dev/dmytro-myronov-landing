@@ -1,7 +1,7 @@
 /*
  * All texts, dates and photo slots of the page live here.
- * Photos: put a file named <slot>.jpg into assets/photos/ (e.g. conference-1.jpg).
- * The page loads the .jpg first and falls back to the .svg placeholder.
+ * Photos: assets/photos/<slot>.webp (see assets/photos/README.md).
+ * A photo whose file is missing is hidden.
  */
 window.CONTENT = {
   person: {
@@ -14,7 +14,7 @@ window.CONTENT = {
     linkedin: 'https://www.linkedin.com/in/dmytro-myronov-3054397a',
     github: 'https://github.com/dmytro-mironov-dev',
     cv: 'assets/cv/Dmytro_Myronov_Magento2_AI.pdf',
-    portrait: 'portrait',
+    portrait: 'me-main',
   },
 
   stats: [
@@ -40,7 +40,20 @@ window.CONTENT = {
         'Shipping integrations (Nova Poshta) and data-migration tooling',
       ],
       tags: ['Yii', 'AngularJS', 'OpenCart', 'MySQL', 'Team lead'],
-      photos: ['seoboost-1', 'seoboost-2'],
+      feature: {
+        slot: 'seoboost-lead-portrait',
+        word: 'TEAM LEAD',
+        kicker: 'SEOBOOST · Kharkiv · 2015',
+        title: 'Where I learned to lead',
+        text: 'Head of the web development department: my own team, my own clients and the first architecture decisions that were mine to defend.',
+      },
+      photos: [
+        { slot: 'seoboost-team', cap: 'My web team at SEOBOOST · 2016' },
+        { slot: 'seoboost-card', cap: 'Head of Web Development: my first lead title' },
+        { slot: 'seoboost-dev', cap: 'With one of my developers' },
+        { slot: 'seoboost-qa', cap: 'With our QA engineer' },
+        { slot: 'seoboost-hr', cap: 'Our HR, who stole my only PHP t-shirt' },
+      ],
     },
     {
       id: 'ssa',
@@ -56,7 +69,10 @@ window.CONTENT = {
         'Mentoring and full-cycle delivery as a team lead',
       ],
       tags: ['Magento 2', 'Magento 1', 'PHP 7', 'REST', 'Codeception'],
-      photos: ['ssa-1', 'conference-1', 'conference-2', 'conference-3', 'conference-4'],
+      photos: [
+        { slot: 'ssa-booth-2017', cap: 'SSA Group booth · 2017' },
+        { slot: 'mageconf-2017-logo', cap: 'MageConf 2017 · Kyiv' },
+      ],
     },
     {
       id: 'overdose',
@@ -73,7 +89,12 @@ window.CONTENT = {
         'Clients: Coco Republic, Foundrae, Beaurepaires · Goodyear, Lora DiCarlo, GlobeWest',
       ],
       tags: ['Adobe Commerce Cloud', 'NMI', 'Stripe', 'Salesforce', 'Algolia'],
-      photos: ['overdose-1', 'overdose-2'],
+      photos: [
+        { slot: 'overdose-mug', cap: 'Remote for Overdose: coffee, code, Adobe Commerce Cloud' },
+        { slot: 'overdose-mug-code', cap: 'Morning deploy, morning mug' },
+        { slot: 'overdose-desk', cap: 'Home office with the ElePHPant' },
+        { slot: 'overdose-desk-2', cap: 'Same desk, a different Magento store' },
+      ],
     },
     {
       id: 'startupsoft',
@@ -89,7 +110,7 @@ window.CONTENT = {
         'Data-processing automation in Python',
       ],
       tags: ['Magento', 'NetSuite', 'Node.js', 'Python'],
-      photos: ['startupsoft-1'],
+      photos: [],
     },
     {
       id: 'hoofdfabriek',
@@ -106,9 +127,21 @@ window.CONTENT = {
         'Introducing MagePilot: Jira tickets to tested branches with AI agents',
       ],
       tags: ['Magento 2.4', 'Kerridge', 'NetSuite', 'Hyvä', 'MagePilot'],
-      photos: ['hoofdfabriek-1', 'hoofdfabriek-2', 'hoofdfabriek-3'],
+      photos: [
+        { slot: 'hoofdfabriek-jacket', cap: 'Hoofdfabriek team jacket: part of the crew since 2023' },
+      ],
     },
   ],
+
+  community: {
+    lead: 'Magento is a community thing. I go to meetups and conferences, talk to the people who build the platform and bring the ideas back to my team.',
+    events: [
+      { slot: 'meetup-kharkiv-2017', date: 'Oct 2017', title: 'Magento Meetup Kharkiv', text: 'Local Magento crowd, talks and a lot of checkout war stories.' },
+      { slot: 'ssa-booth-2017', date: 'Nov 2017', title: 'SSA Group booth', text: 'Representing the company and meeting other Magento teams.' },
+      { slot: 'mageconf-2017-stage', date: 'Dec 2017', title: 'MageConf 2017 · Kyiv', text: 'The biggest Magento conference in Ukraine. Focus on tech.' },
+      { slot: 'mageconf-2017-logo', date: 'Dec 2017', title: 'MageConf 2017 · Kyiv', text: 'Yes, I love Magento. Even after 8 years.' },
+    ],
+  },
 
   integrations: [
     { name: 'Kerridge ERP', flows: ['products', 'tier prices', 'stock'] },

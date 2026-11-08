@@ -6,13 +6,19 @@
   const hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
 
-  /* photo slot: try .jpg, then .png, then the svg placeholder */
-  const exts = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+  /* photo slot: assets/photos/<slot>.webp, then .jpg; a missing photo hides its figure */
+  const exts = ['webp', 'jpg'];
   function loadSlot(img, slot) {
     let i = 0;
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.dataset.slot = slot;
-    const next = () => { if (i < exts.length) img.src = `assets/photos/${slot}.${exts[i++]}`; };
+    const next = () => {
+      if (i < exts.length) { img.src = `assets/photos/${slot}.${exts[i++]}`; return; }
+      img.onerror = null;
+      const fig = img.closest('figure');
+      if (fig) fig.hidden = true;
+    };
     img.onerror = next;
     next();
   }
@@ -91,7 +97,8 @@
   /* ---------- CAREER ---------- */
   const track = $('#careerTrack');
   C.career.forEach((s, idx) => {
-    const st = el('article', 'stage');
+    if (s.feature) track.appendChild(featureBanner(s));
+    const st = el('article', 'stage' + (s.photos.length ? '' : ' stage--solo'));
     st.id = 'stage-' + s.id;
     st.style.setProperty('--c', s.color);
     st.innerHTML = `
@@ -106,17 +113,52 @@
           <ul class="stage__points">${s.points.map(x => `<li>${x}</li>`).join('')}</ul>
           <div class="tags">${s.tags.map(x => `<span>${x}</span>`).join('')}</div>
         </div>
-        <div class="stage__photos"></div>
+        ${s.photos.length ? `<div class="stage__photos stage__photos--n${Math.min(s.photos.length, 5)}"></div>` : ''}
       </div>`;
     const ph = $('.stage__photos', st);
-    s.photos.slice(0, 5).forEach((slot, i) => {
+    s.photos.slice(0, 5).forEach((photo, i) => {
       const f = el('figure', `ph ph--${i}`);
       f.dataset.depth = [0.12, -0.18, 0.25, -0.1, 0.3][i];
-      f.appendChild(slotImg(slot, `${s.company} photo`));
-      zoomable(f, s.company);
+      f.appendChild(slotImg(photo.slot, photo.cap));
+      f.appendChild(el('figcaption', null, photo.cap));
+      zoomable(f, photo.cap);
       ph.appendChild(f);
     });
     track.appendChild(st);
+  });
+
+  /* full-bleed parallax banner in front of a career stage */
+  function featureBanner(s) {
+    const f = s.feature;
+    const b = el('div', 'feature');
+    b.style.setProperty('--c', s.color);
+    b.innerHTML = `
+      <div class="feature__word feature__word--back" aria-hidden="true">${f.word}</div>
+      <figure class="feature__photo"><div class="feature__img"></div></figure>
+      <div class="feature__word feature__word--front" aria-hidden="true">${f.word}</div>
+      <div class="feature__text">
+        <span class="feature__kicker mono">${f.kicker}</span>
+        <h3>${f.title}</h3>
+        <p>${f.text}</p>
+      </div>`;
+    const img = slotImg(f.slot, `${s.company}: ${f.title}`);
+    img.loading = 'eager';
+    $('.feature__img', b).appendChild(img);
+    zoomable($('.feature__photo', b), f.kicker);
+    return b;
+  }
+
+  /* ---------- COMMUNITY ---------- */
+  const cm = C.community;
+  $('#communityLead').textContent = cm.lead;
+  const strip = $('#communityStrip');
+  cm.events.forEach((ev, i) => {
+    const card = el('figure', 'event');
+    card.appendChild(slotImg(ev.slot, `${ev.title}, ${ev.date}`));
+    card.appendChild(el('figcaption', null, `<span class="event__date mono">${ev.date}</span><b>${ev.title}</b><span>${ev.text}</span>`));
+    card.style.setProperty('--tilt', (i % 2 ? 2.5 : -2.5) + 'deg');
+    zoomable(card, `${ev.title} · ${ev.date}`);
+    strip.appendChild(card);
   });
 
   /* ---------- INTEGRATIONS SVG ---------- */
@@ -358,7 +400,8 @@
   /* ---------- GALLERY ---------- */
   const ms = $('#masonry');
   const gal = [];
-  C.career.forEach(s => s.photos.forEach(ph => gal.push({ slot: ph, cap: s.company })));
+  C.career.forEach(s => s.photos.forEach(ph => gal.push(ph)));
+  cm.events.forEach(ev => { if (!gal.some(g => g.slot === ev.slot)) gal.push({ slot: ev.slot, cap: `${ev.title} · ${ev.date}` }); });
   gal.forEach(g => {
     const f = el('figure', 'reveal');
     f.appendChild(slotImg(g.slot, g.cap));
@@ -442,6 +485,24 @@
       gsap.from($('.stage__content', st).children, { opacity: 0, x: -50, duration: .9, stagger: .08, ease: 'power3.out', scrollTrigger: { trigger: st, start: 'top 65%' } });
       gsap.from(st.querySelectorAll('.ph img'), { scale: 1.3, duration: 1.4, ease: 'power3.out', scrollTrigger: { trigger: st, start: 'top 70%' } });
     });
+    // feature banner: photo and words move at different depths
+    document.querySelectorAll('.feature').forEach(b => {
+      const st = { trigger: b, start: 'top bottom', end: 'bottom top', scrub: true };
+      gsap.fromTo($('.feature__img', b), { yPercent: -14, scale: 1.18 }, { yPercent: 14, scale: 1.05, ease: 'none', scrollTrigger: st });
+      gsap.fromTo($('.feature__photo', b), { y: 120 }, { y: -120, ease: 'none', scrollTrigger: { ...st } });
+      gsap.fromTo($('.feature__word--back', b), { xPercent: 18 }, { xPercent: -28, ease: 'none', scrollTrigger: { ...st } });
+      gsap.fromTo($('.feature__word--front', b), { xPercent: -30 }, { xPercent: 12, ease: 'none', scrollTrigger: { ...st } });
+      gsap.fromTo($('.feature__photo', b), { clipPath: 'inset(18% 18% 18% 18% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', ease: 'power2.out', scrollTrigger: { trigger: b, start: 'top 85%', end: 'top 25%', scrub: true } });
+      gsap.from($('.feature__text', b).children, { opacity: 0, y: 40, stagger: .12, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: b, start: 'top 55%' } });
+    });
+    // community: horizontal strip pinned on wide screens
+    ScrollTrigger.matchMedia({
+      '(min-width: 900px)': () => {
+        const dist = () => Math.max(0, strip.scrollWidth - strip.parentElement.clientWidth);
+        gsap.to(strip, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '.community__pin', start: 'top 12%', end: () => '+=' + dist(), pin: true, scrub: true, invalidateOnRefresh: true } });
+      },
+    });
+    gsap.from('.event', { opacity: 0, y: 80, rotate: 0, stagger: .1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '#communityStrip', start: 'top 85%' } });
     // section heads
     document.querySelectorAll('.section-head, .split__text').forEach(h => {
       gsap.from(h.children, { opacity: 0, y: 40, duration: .9, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: h, start: 'top 80%' } });
