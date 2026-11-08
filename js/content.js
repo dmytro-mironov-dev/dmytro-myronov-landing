@@ -128,6 +128,9 @@ window.CONTENT = {
       ],
       tags: ['Magento 2.4', 'Kerridge', 'NetSuite', 'Hyvä', 'MagePilot'],
       photos: [
+        { slot: 'hoofdfabriek-outing', cap: 'Team outing with the Hoofdfabriek crew' },
+        { slot: 'hoofdfabriek-visit', cap: 'Visiting the team in the Netherlands' },
+        { slot: 'hoofdfabriek-teamday', cap: 'Team day away from the screens' },
         { slot: 'hoofdfabriek-jacket', cap: 'Hoofdfabriek team jacket: part of the crew since 2023' },
       ],
     },
