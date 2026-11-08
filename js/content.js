@@ -14,7 +14,7 @@ window.CONTENT = {
     phone: '+48 506 843 394',
     linkedin: 'https://www.linkedin.com/in/dmytro-myronov-3054397a',
     github: 'https://github.com/dmytro-mironov-dev',
-    cv: 'assets/cv/Dmytro_Myronov_Magento2_AI.pdf',
+    cv: 'assets/cv/Dmytro_Myronov_Senior_Software_Engineer.pdf',
     portrait: 'me-main',
   },
 
